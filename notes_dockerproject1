@@ -1,0 +1,208 @@
+steps for docker project1 configuration
+
+Download and Install Eclipse
+===========================
+install java : yum install java-1.8.0-openjdk* -y
+java -version
+
+https://www.eclipse.org/downloads/index-developer.php?osType=linux
+cd to Downloads]# tar -xvf eclipse-java-photon-M2-linux-gtk-x86_64.tar.gz
+rm -rf eclipse-java-photon-M2-linux-gtk-x86_64.tar.gz
+cd downloads/eclipse 
+launch eclipse by clicking eclipse icon.
+Eclipse->Help menu->Install new software choose the Web, XML, Java EE plugin and install it
+download jar files : https://jersey.github.io/download.html
+Download Apache tomcat from : http://www-us.apache.org/dist/tomcat/tomcat-9/v9.0.1/bin/apache-tomcat-9.0.1.tar.gz
+In Eclipse : goto window--->preferences--->server--->runtimeenvironment--->add ---> apachetomcat
+follow link to create WAR file : https://www.tutorialspoint.com/restful/restful_first_application.htm
+Note : Create com.tutorialspont package and .java files under src/main/java
+------
+UserManagemt--->rightclick--->javaEE tools--->Generate Deplyoment descriptor grub ---- to generate web.xml
+
+
+
+Create War file : User management (which should further be generated manually using gradle inorder to automate build task)
+=========================================
+
+https://www.tutorialspoint.com/restful/restful_first_application.htm
+
+
+
+Gradle :
+=========================================================
+1.Download gradle from "install manually": https://gradle.org/install
+
+2.Extract in /opt
+
+Follow below steps
+--------------------
+3. alternatives --install /usr/bin/gradle gradle /opt/<gradle-4.0.2>/bin/gradle 200000
+
+verify if installed!!
+alternatives --config gragle
+gradle --version
+
+
+Create WAR file using gradle
+================================
+
+create gradle.build in eclipse 
+---------------------------------------
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+project.webAppDirName = 'WebContent'
+
+def dep_jars = "/root/eclipse-workspace/UserManagement/WebContent/WEB-INF/lib/" 
+
+dependencies {
+compile fileTree(dir: "${dep_jars}", includes: ['*.jar'])} 
+
+
+Build the files
+-------------------------------------------
+[root@redhatmaster /root/eclipse-workspace/UserManagement]# gradle build
+
+BUILD SUCCESSFUL in 8s
+1 actionable task: 1 executed
+
+verify for build directory and war file
+----------------------------------------------
+
+[root@redhatmaster /root/eclipse-workspace/UserManagement/]ls
+
+
+
+
+Docker: 
+=====================================
+yum-config-manager --enable rhel-7-server-extras-rpms
+
+1.update yum : 
+
+yum update
+
+2. Configure repo as below in the file /etc/yum.repo.d/redhat.repo
+[dockerrepo]
+name=Docker Repository
+baseurl=https://yum.dockerproject.org/repo/main/centos/7/
+enabled=1
+gpgcheck=1
+gpgkey=https://yum.dockerproject.org/gpg
+
+3. yum install docker*
+
+verify if installed!!
+-----------------
+docker --version
+
+start docker service
+------------------
+systemctl start docker
+
+
+Download Liberty container
+=======================================
+
+Run below commad
+---------------------
+docker pull websphere-liberty
+
+verify installed images
+-----------------------
+docker images
+
+
+Run Docker 
+-----------
+
+docker run -d -p 9080:9080 <imageID>
+
+connect to container
+-------------------------
+docker ps
+docker exec -ti <first3digitsofcontainerID> /bin/bash
+
+
+copy created war file from local to container 
+--------------------------------------------------
+
+docker cp <source(localfilename)> <containerID:destination(dropinsfolder)>
+
+example : docker cp devopsproject1.war 689f5d27a416:/opt/ibm/wlp/usr/servers/defaultserver/dropins
+
+
+
+Hint : Copying files from container to local : docker cp containerID:source localdestdirectory
+
+
+NOTE : IF vi command not found ,follow below steps.
+-----------------------------------------------------------
+
+apt-get update
+
+apt-get install python-software-properties
+
+apt-get install apt-file
+
+apt-file update
+
+apt-get install software-properties-common
+
+apt-get install vim
+
+------------------------------------------------------------
+
+
+
+
+GIT Installation
+=================================
+
+pre-requisites
+----------------------------
+yum install gettext-devel expat-devel curl-devel zlib-devel openssl-devel -y
+yum install git
+
+if above doesnt work , try below.
+
+cd /usr/local/src
+wget https://www.kernel.org/pub/software/scm/git/git-1.8.2.3.tar.gz
+ls
+tar -xvf git-1.8.2.3.tar.gz 
+
+
+============================================
+
+Jenkins setup
+=========================================
+Java should be jdk 1.8
+apache tomcat 9
+-----------------
+https://tomcat.apache.org/download-90.cgi#9.0.1
+tar -xvf apache-tomcat-9.0.1.tar.gz
+cd apache-tomcat-9.0.1/
+edit file conf/tomcatusers.xml
+<role rolename="manager-gui"/>
+  <role rolename="manager-script"/>
+  <role rolename="manager-jmx"/>
+  <role rolename="manager-status"/>
+  <role rolename="admin-gui"/>
+  <role rolename="admin-script"/>
+  <user username="redhatmaster" password="devops1" roles="manager-gui,manager-script,manager-jmx,manager-status,admin-gui,admin-script"/>
+./bin/startup.sh 
+test tomcatserver in browser
+---------------------
+http://localhost:8080/
+
+download jenkins 2.7.3 from : https://updates.jenkins-ci.org/download/war/
+https://www.youtube.com/watch?v=GkyUSSajFEg
+
+follow above steps in youtube for deploying jenkins war and launching jenkins.
+
+
+
+
+
+
