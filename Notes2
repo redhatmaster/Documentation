@@ -232,6 +232,18 @@ https://www.youtube.com/watch?v=GkyUSSajFEg
 follow above steps in youtube for deploying jenkins war and launching jenkins.
 
 
+SSH KEY setup
+--------------------
+ssh-keygen -t rsa -b 4096 -C "vissa.pallavi@gmail.com"
+
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+more /root/.ssh/id_rsa.pub 
+Copy the above key and add in GITHUB
+test connection as below.
+ssh -T git@github.com
+
+
 
 GIT Repository
 ================================================
