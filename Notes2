@@ -296,9 +296,4 @@ jenkins - redhatmaster psw - devops1
 git@github.com:visahis/UserManagement.git
 
 
-
-
-
-
-
-
+setsebool -P unconfined_mozilla_plugin_transition 0
