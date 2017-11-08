@@ -215,10 +215,67 @@ Copy the above key and add in GITHUB
 test connection as below.
 ssh -T git@github.com
 
+GIT Repository
+================================================
+After creating GIT Id and Password , Git repository and copying SSH key to kit
+cd /root/
+mkdir git
+cd git
+which git
+git clone <copy from git@github.com:visahis/tutorialspoint.git>
+ls
+cd tutorialspoint/
+cp -r /home/redhatmaster/eclipse-workspace/UserManagement .
+ls
+UserManagement/
+ls
+cd ..
+git status -s
+git branch 
+git add .
+git status -s
+git commit -m "checkin User Management Folder"
+git config --global user.email "vissa.pallavi@gmail.com"
+git config --global user.name "redhatmaster"
+git commit -m "checkin User Management Folder"
+git status -s
+pwd
+ls -al
+cd .git/
+ls
+cd ..
+git log
+git push origin master
+
+Refresh browser and check in Git repositories for UserManagement directory files
+
+Open eclipse and rename project as old.
+
+Now try pulling code from git hub and perform changes and commit to git hub back : as below.
+-------------------------------------------------------------------------------------- 
+eclipse - window -- showview --- other --- git repositories , git staging
+
+you will find no repositories.Right click on git repositories tab --- import project --- select projects and finish
+
+you will find usermanagement project in the project explorer.
+
+Now perform some changes in build.gradle
+save
+you will find changes in staging
+drag and drop to bottom box
+commit and push changes
+verify in github
 
 
 
+Ids
+===============
+GIT - redhatmaster psw - devops#1
+GIT organisation : visahis
+
+jenkins - redhatmaster psw - devops1
+
+git@github.com:visahis/UserManagement.git
 
 
-
-
+setsebool -P unconfined_mozilla_plugin_transition 0
