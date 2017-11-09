@@ -81,6 +81,10 @@ Docker:
 =====================================
 yum-config-manager --enable rhel-7-server-extras-rpms
 
+yum-config-manager --add-repo https://packages.docker.com/1.13/yum/repo/main/centos/7
+
+###########################################################
+Use below for lower version
 1.update yum : 
 
 yum update
@@ -92,8 +96,9 @@ baseurl=https://yum.dockerproject.org/repo/main/centos/7/
 enabled=1
 gpgcheck=1
 gpgkey=https://yum.dockerproject.org/gpg
+############################################################
 
-3. yum install docker*
+3. yum install docker-engine-1.13*
 
 verify if installed!!
 -----------------
