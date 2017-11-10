@@ -286,6 +286,11 @@ git@github.com:visahis/UserManagement.git
 setsebool -P unconfined_mozilla_plugin_transition 0
 
 
+Jenkins - dockerfile
+-----------------------------
+docker build -t <imagename> </path of dockerfile>
+docker run -p 9080:9080 --name <nameofcontainer> <imagename>
+
 Docker Compose 
 ==========================
 curl -L https://github.com/docker/compose/releases/download/1.17.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
