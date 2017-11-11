@@ -16,6 +16,22 @@ everyyear everymonth everyweek everyday everyhour everyminute
 
 GRADLE
 ---------------
+build.gradle # invoked by settings.gradle
+{
+task taskname()
+{}
+task taskname(dependson:taskname)
+{}
+}
+
+gradle build
+gradle <task1> <task2>....
+gradle task1 -x task2
+gradle build --continue
+gradle ta(taskname abbrevated)
+gradle -b <anotherbuildfile>
+gradle -p <anotherprojectdirectory>
+
 
 DOCKER
 ---------------
