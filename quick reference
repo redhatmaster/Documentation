@@ -31,7 +31,11 @@ gradle build --continue
 gradle ta(taskname abbrevated)
 gradle -b <anotherbuildfile>
 gradle -p <anotherprojectdirectory>
+gradle -q projects (information about project directories)
+gradle -q tasks (info about tasks)
+gradle wrapper --gradle-version <version>
 
+gradle build --continues or -t  --------- continues build
 
 DOCKER
 ---------------
