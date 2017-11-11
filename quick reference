@@ -1,0 +1,46 @@
+GIT
+--------------
+ssh -T git@github.com
+git clone <linktorepository>
+git status -s
+git config --name <username>
+git config --mail <email>
+git commit -m "<message>"
+git pull origin master
+git push origin master
+git log
+
+JENKINS
+---------------
+everyyear everymonth everyweek everyday everyhour everyminute
+
+GRADLE
+---------------
+
+DOCKER
+---------------
+FROM
+MAINTAINER
+RUN
+CMD - should be one , if multiple last one effects
+COPY
+ADD
+PORT
+
+DOCKER_COMPOSE
+---------------
+version
+services:
+<servicename>:
+build:
+image:
+ports:
+volume:
+command:
+dockerfile:
+links:
+networks:
+
+
+ANSIBLE
+---------------
