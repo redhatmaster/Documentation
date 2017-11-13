@@ -3,8 +3,8 @@ GIT
 ssh -T git@github.com
 git clone <linktorepository>
 git status -s
-git config --name <username>
-git config --mail <email>
+git config --global user.name <username>
+git config --global user.mail <email>
 git commit -m "<message>"
 git pull origin master
 git push origin master
@@ -12,7 +12,7 @@ git log
 
 JENKINS
 ---------------
-everyyear everymonth everyweek everyday everyhour everyminute
+minute hours days month week
 
 GRADLE
 ---------------
@@ -27,7 +27,7 @@ task taskname(dependson:taskname)
 gradle build
 gradle <task1> <task2>....
 gradle task1 -x task2
-gradle build --continue
+gradle build --continous
 gradle ta(taskname abbrevated)
 gradle -b <anotherbuildfile>
 gradle -p <anotherprojectdirectory>
@@ -35,7 +35,7 @@ gradle -q projects (information about project directories)
 gradle -q tasks (info about tasks)
 gradle wrapper --gradle-version <version>
 
-gradle build --continues or -t  --------- continues build
+gradle build --continouos or -t  --------- continues build
 
 DOCKER
 ---------------
