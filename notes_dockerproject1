@@ -302,3 +302,13 @@ curl -L https://github.com/docker/compose/releases/download/1.17.0/docker-compos
 chmod +x /usr/local/bin/docker-compose
 docker-compose -version
 
+Ansible 
+=========================================================
+yum install make git make gcc python-devel libffi-devel openssl-devel epel-release python-sphinx
+yum install python-pip 
+git clone git://github.com/ansible/ansible.git
+cd ansible
+git branch -a | grep stable
+git checkout stable-2.3
+make
+# make install
