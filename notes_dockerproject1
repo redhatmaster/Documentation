@@ -2,6 +2,7 @@ steps for docker project1 configuration
 
 wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 yum install epel-release-latest-7.noarch.rpm
+yum update
 yum install java-1.8.0-openjdk* -y
 
 Download and Install Eclipse
