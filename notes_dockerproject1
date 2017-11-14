@@ -304,11 +304,25 @@ docker-compose -version
 
 Ansible 
 =========================================================
+wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+rpm -ivh epel-release-latest-7.noarch.rpm
+yum install epel-release
+yum install python
+yum install python-pip
+yum install net-tools
+yum install wget
+pip install --upgrade pip
+pip install markupsafe
+pip install xmltodict
+pip install pywinrm
+
 yum install make git make gcc python-devel libffi-devel openssl-devel epel-release python-sphinx
-yum install python-pip 
 git clone git://github.com/ansible/ansible.git
 cd ansible
 git branch -a | grep stable
-git checkout stable-2.3
+git checkout stable-<version>
 make
-# make install
+make install
+ansible --version
+ansible localhost -m ping
+
