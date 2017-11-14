@@ -27,3 +27,8 @@ SSH setp
 ssh-keygen
 ssh-agent bash
 ssh-add ~/.ssh/id_rsa
+
+Test connection
+-----------------
+ansible localhost -m ping
+ansible localhost -a "/bin/echo hello"
