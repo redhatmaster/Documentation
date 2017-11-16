@@ -208,7 +208,7 @@ test tomcatserver in browser
 ---------------------
 http://localhost:8080/
 
-download jenkins 2.7.3 from : https://updates.jenkins-ci.org/download/war/
+download jenkins 2.7.3 from : https://updates.jenkins-ci.org/download/war/2.7.3/jenkins.war
 https://www.youtube.com/watch?v=GkyUSSajFEg
 
 follow above steps in youtube for deploying jenkins war and launching jenkins.
