@@ -8,6 +8,8 @@ $*    Stores all the arguments that were entered on the
       command line ($1 $2 ...).
 "$@"  Stores all the arguments that were entered
       on the command line, individually quoted ("$1" "$2" ...)
+$$ gives the process id of the currently executing process 
+$! shows the process id of the process that recently went into background.
       
       
       
