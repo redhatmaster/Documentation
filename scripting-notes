@@ -83,3 +83,62 @@ echo $((x + y))
 echo $((x - y))
 echo $((x * y))
 echo $((x / y))
+
+
+sed
+====================================
+
+
+
+grep
+======================================
+
+
+find
+======================================
+
+
+
+
+extras
+--------------------------------------------
+for loop :
+
+for i in $( ls ); do
+echo item: $i
+done
+
+while loop :
+
+#!/bin/bash
+COUNTER=0
+while [ $COUNTER -lt 10 ]; do
+echo The counter is $COUNTER
+let COUNTER=COUNTER+1
+done
+
+until loop :
+
+#!/bin/bash
+COUNTER=20
+until [ $COUNTER -lt 10 ]; do
+echo COUNTER $COUNTER
+let COUNTER-=1
+done
+-----------------------------------------------
+
+echo techniques
+--------------------------------------------------------------
+echo ${variable:11:6} --- print string in a sentence
+
+echo ${variable#*:*:*:} --- print complete sentence
+
+${#variable}  ---- length of a variable
+
+echo ${variable: -5}  --- last 5 char of variable
+
+${variable:-10} - gives 10 if variable was not assigned before
+${variable: -10} - gives last 10 symbols of variable
+
+echo ${variable//pattern/replacement} --- sbstitute[ $a == $b ] - should be used for string comparison
+[ $a -eq $b ] - should be used for number tests
