@@ -10,6 +10,76 @@ $*    Stores all the arguments that were entered on the
       on the command line, individually quoted ("$1" "$2" ...)
 $$ gives the process id of the currently executing process 
 $! shows the process id of the process that recently went into background.
-      
-      
-      
+
+Syntax
+-------------------------------------
+if
+============
+
+if i in [1..99] then
+echo "Hi"
+fi
+
+if nested
+============
+read value
+if (( "$value"=="y" || "$value"=="Y" )); then
+echo "YES"
+elif (( "$value"=="N" || "$value"=="n" )); then
+echo "NO"
+else
+echo "please enter valid input : 'Y', 'y', 'N', 'n'"
+fi
+
+#!/bin/bash
+read x
+read y
+if (($x < $y)); then
+echo "X is less than Y"
+elif (($x > $y)); then
+echo "X is greater than Y"
+else
+echo "X is equal to Y"
+fi
+
+
+while
+============
+ x=1
+while [ $x -le 5 ]
+do
+  echo "Welcome $x times"
+  x=$(( $x + 1 ))
+done
+
+
+FILE=$1
+# read $FILE using the file descriptors
+exec 3<&0
+exec 0<$FILE
+while read line
+do
+	# use $line variable to process line
+	echo $line
+done
+exec 0<&3
+
+
+
+for
+============
+for number in {1..99..5}
+do
+    echo $number
+done
+
+Arithmetic
+===================
+#!/bin/bash
+read x
+read y
+
+echo $((x + y))
+echo $((x - y))
+echo $((x * y))
+echo $((x / y))
