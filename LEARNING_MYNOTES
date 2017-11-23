@@ -1,0 +1,104 @@
+Linux
+================
+1. Booting Procedure
+
+STEP-1: Power Supply ---> ac current-----> SMPS(Swithing Mode Power Supply)----> convert to dc current ------> PowerGood Signal
+
+# A timer in the MotherBoard will be sending reset signal to CPU untill PowerGood Signal.
+
+STEP-2: After PowerGood Signal is recieved to the motherboard, resetting is stopped and CPU searches for Instructions in ROM.
+# ROM [ FFFF:0000h] only one instruction set which is last region of ROM called JUMP command tells BIOS program Location
+
+STEP-3: BIOS gets 
+
+POST (power on self test) triggered which undergoes Warm Start--------> Intigrety check for h/w components 
+                                                                                          [timerICs ,DMA Controler ,CPU,Vedio RAM]
+                                                                    and Cold Start------> [Motherboard keyboard printer port Hardrive]
+
+
+BIOS Check -----> CMOS settings (RAM)
+                  -------------------
+               Boot Order - OS location to boot 
+                    1.CD ROM
+                    2.HARD DISK
+                    ....
+ 
+ STEP-4: MBR (Master Boot Record) and GRUB (Grand Unified Boot Loader)
+ 
+ BIOS ----> finds ------> MBR in Harddisk [Boot Sector - 1st sector of Hard disk(512MB)] ----> loads contents of MBR ----> RAM
+ MBR -----> initialises ---------> GRUB - 1st stage of Boot Loader
+ 
+ # GRUB 1st Stage: Sector 0 : GRUB 1st Stage of boot loader looks for the flag in Partition Table to know which partition has to be searched for KERNAL
+                   KERNAL SEARCH: GRUB Loads file system drivers (s/w that manager h/w controllers) inorder to access /boot/grub/grub.conf for Kernal Path.
+ # GRUB 2nd Stage : Loads Kernal image and Initrd.
+  Loading Kernal Image : Kernal Image is a Compressed file - executable bz image file.Kernal loads temporary file system before
+                         loading ROOT file system  with insmod and rmmod commands in initrd image.
+                         Kernal is now loaded to memory and executes 1st User space program called /sbin/init whose pid is 1
+                         and looks for /etc/initab conf file for default Run level.  
+              
+ 
+2.UserManagement
+---------------
+USer config files
+user add, mod , del
+user permisions, restrictions
+PAM
+filesystem access
+
+3.filesystem 
+---------------
+FS tree
+file/directory permissions
+redirection std/std out
+file permisions
+mounting
+links
+
+4.Network Management
+------------------
+network configuration
+firewall
+iptables
+
+5.Process Management
+------------------
+process
+hidden process
+cpu and mem utilization
+services and daemons
+
+
+6.Package management
+-----------------
+YUM
+RPM
+apt-get
+alternatives
+curl
+wget
+
+7.Others
+--------------------
+scheduling jobs
+RUN Levels
+
+
+8.Scripting
+================
+environment variables
+echo 
+file operations
+grep, sed, find, redirection and piping
+exracting data from files
+loops, conditions
+
+
+9.Devops
+================
+9-1.GIT
+9-2.GRADLE
+9-3.JENKINS
+9-4.DOCKER
+9-5.DOCKER-COMPOSE
+9-6.ANSIBLE
+9-7.AWS 
