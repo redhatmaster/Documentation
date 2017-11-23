@@ -12,8 +12,8 @@ STEP-2: After PowerGood Signal is recieved to the motherboard, resetting is stop
 STEP-3: BIOS gets 
 
 POST (power on self test) triggered which undergoes Warm Start--------> Intigrety check for h/w components 
-                                                                                          [timerICs ,DMA Controler ,CPU,Vedio RAM]
-                                                                    and Cold Start------> [Motherboard keyboard printer port Hardrive]
+                                                                          [timerICs ,DMA Controler ,CPU,Vedio RAM]
+                                                    and Cold Start------> [Motherboard keyboard printer port Hardrive]
 
 
 BIOS Check -----> CMOS settings (RAM)
