@@ -38,10 +38,191 @@ BIOS Check -----> CMOS settings (RAM)
               
  
 2.UserManagement
----------------
-USer config files
-user add, mod , del
+---------------------------------------------
+USer config files :  
+---------------------------------------
+/etc/passwd - uname:psw:uid:gid:comments:homedir:shell
+/etc/groups - uname:pwd:uid:gname
+/etc/shadow - uname:encryptedpsw:lastpswchange:min:max:warn:inactive:expire
+
+These are the two files which contain the default values to be assigned to a user when created using useradd
+# less /etc/default/useradd
+GROUP=100
+HOME=/home
+INACTIVE=-1
+EXPIRE=
+SHELL=/bin/bash
+SKEL=/etc/skel
+CREATE_MAIL_SPOOL=yes
+
+You can also view the default parameters set for new user to be created using
+# useradd -D
+GROUP=100
+HOME=/home
+INACTIVE=-1
+EXPIRE=
+SHELL=/bin/bash
+SKEL=/etc/skel
+CREATE_MAIL_SPOOL=yes
+
+The second file containing values used by useradd command for UID, GID, password encryption method and expiry related information
+# less /etc/login.defs
+MAIL_DIR        /var/spool/mail
+
+PASS_MAX_DAYS   99999
+PASS_MIN_DAYS   0
+PASS_MIN_LEN    5
+PASS_WARN_AGE   7
+
+UID_MIN                   500
+UID_MAX                 60000
+
+GID_MIN                   500
+GID_MAX                 60000
+
+CREATE_HOME     yes
+UMASK           077
+
+USERGROUPS_ENAB yes
+ENCRYPT_METHOD SHA512
+
+How to change default values of useradd command?
+
+Either you can open /etc/default/useradd file and edit the file or you can also do the same using CLI as shown below
+
+To change the default home directory location for all new users
+# useradd -D -b /opt/users
+
+# useradd -D | grep HOME
+HOME=/opt/users
+
+To change the default login shell
+# useradd -D -s /bin/sh
+
+# useradd -D | grep -i shell
+SHELL=/bin/sh
+
+Now what if you want to add custom arguments to your user while creating them. 
+let us discuss in detail the different options which you can use along with useradd command
+
+2. Create multiple users with same UID
+# useradd -o deepak -u 501
+# useradd -o deep -u 501
+# useradd -o user -u 501
+
+Verify the UID of the newly create users
+# grep 501 /etc/passwd
+deepak:x:501:501::/home/deepak:/bin/sh
+deep:x:501:504::/home/deep:/bin/sh
+user:x:501:505::/home/user:/bin/sh
+
+3. Manually assign a UID to the user
+
+By default a user automatically gets any free uid more than 500 when you run the useradd command. But what if you manually want to assign a uid to your user
+
+
+# useradd -u 550 deepak
+
+Let us verify the assigned uid to deepak
+# id deepak
+uid=550(deepak) gid=550(deepak) groups=550(deepak)
+
+4. Create user without home directory
+# useradd -M test
+
+# su - test
+su: warning: cannot change directory to /home/test: No such file or directory
+
+-bash-4.1$ pwd
+/root
+
+5. Create user with custom defined home directory
+# useradd -d /home/users/test test
+
+# su - test
+
+$ pwd
+/home/users/test
+
+6. Add user to different primary group
+By default when you run useradd command, a group with the same name is created inside /etc/group but what if you donot want a group to be created with the same name instead add the user to some different already existing group.
+
+Here we will create a user "deep" and add him to group "admin" without creating another "deep" group
+# useradd -g admin deep
+
+Verify the groups of user "deep"
+
+# groups deep
+deep : admin
+
+7. Add user to different secondary group
+
+In the above command you saw if we are mentioning a different primary group while using useradd command then a default group with the name of user is NOT created. Now what if you want a group with username's to be created but instead you want the user to add some secondary group.
+
+Here user deepak is created along with group deepak but also in the same command we are adding deepak to dba group
+# useradd  -G dba deepak
+
+Verify groups of deepak
+# groups deepak
+deepak : deepak dba
+
+8. Add user to multiple groups
+You can add the user to multiple secondary groups using single command
+# useradd -G admin,dba deepak
+
+Verify
+# groups deepak
+deepak : deepak admin dba
+
+Creating a user along with encrypted password
+Now you can create a user with pre-defined password, but the condition is the password used should be encrypted which you can do with various methods. Here I will show you one method to do so
+
+Encrypt your password using below command
+# openssl passwd -crypt mypassw0rd
+Warning: truncating password to 8 characters
+TuUFdiN1KaCHQ
+
+Now you can use the encrypted password for your new user
+# useradd -p TuUFdiN1KaCHQ deepak
+
+id <username>
+
+finger <username>
+
+useradd -e 2014-03-27 -f 45 <username>
+
+useradd :- -u,-d,-g,-G,-s,-o ,-e,-f,-R,-p,-M
+usermod :- -d,-g,-G,-s,-o ,-e,-f,-R,-p,-M,-a
+
+-a, --append                  append the user to the supplemental GROUPS
+                                mentioned by the -G option without removing
+                                him/her from other groups
+
+usermod -a -G testuser,testuser1,cryptuser test3
+
+userdel :- -f force some actions that would fail otherwise
+              e.g. removal of user still logged in
+           -r remove home directory and mail spool
+
+chage
+------------------------------------
+chage <username>
+
+  Minimum Password Age [10]: 
+	Maximum Password Age [99999]: 
+	Last Password Change (YYYY-MM-DD) [2017-11-25]: 
+	Password Expiration Warning [7]: 
+	Password Inactive [-1]: 
+	Account Expiration Date (YYYY-MM-DD) [-1]:
+
+chage -l <username>
+
 user permisions, restrictions
+--------------------------------------
+
+
+
+
 PAM
 filesystem access
 
