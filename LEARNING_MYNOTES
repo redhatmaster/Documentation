@@ -241,6 +241,21 @@ setuid : chmod u+s <username>
 setgid : chmod g+s <username>
 stickybit : chmod o+t <username>
 
+3 files are automatically created in users home directory: 
+.bashrc
+.bash_profile
+.bash_history
+
+Difference between .bash_profile and .bashrc
+Every time you login to a Linux (Red Hat) machine .bash_profile file is executed
+but
+In case you are already logged in and you open a new terminal then .bashrc file is executed
+
+
+SUDO users , sudoers file
+----------------------------------------
+
+
 3.filesystem 
 -------------
 FS tree
