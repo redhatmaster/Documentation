@@ -204,6 +204,8 @@ userdel :- -f force some actions that would fail otherwise
               e.g. removal of user still logged in
            -r remove home directory and mail spool
 
+Create multiple users :newusers <file>
+
 chage
 ------------------------------------
 chage <username>
@@ -219,15 +221,28 @@ chage -l <username>
 
 user permisions, restrictions
 --------------------------------------
+chmod <u/g/o/a><+/-><r/w/r> <file>
 
+change ownership of file
 
+chown username: myfolder
+chown :groupname myfolder
+chown username:groupname myfolder
 
+setfacl -m u:username:rwx folder/filename
+getfacl -a <filename>
 
-PAM
-filesystem access
+Special permisions : When a command or script with SUID bit set is run, 
+                     its effective UID becomes that of the owner of the file,
+		     rather than of the user who is running it.
+		     Example : /usr/bin/passwd command.
+
+setuid : chmod u+s <username>
+setgid : chmod g+s <username>
+stickybit : chmod o+t <username>
 
 3.filesystem 
----------------
+-------------
 FS tree
 file/directory permissions
 redirection std/std out
