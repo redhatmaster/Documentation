@@ -42,7 +42,7 @@ BIOS Check -----> CMOS settings (RAM)
 USer config files :  
 ---------------------------------------
 /etc/passwd - uname:psw:uid:gid:comments:homedir:shell
-/etc/groups - uname:pwd:uid:gname
+/etc/group - uname:pwd:uid:gname
 /etc/shadow - uname:encryptedpsw:lastpswchange:min:max:warn:inactive:expire
 
 These are the two files which contain the default values to be assigned to a user when created using useradd
@@ -253,12 +253,15 @@ In case you are already logged in and you open a new terminal then .bashrc file 
 
 
 SUDO users , sudoers file
-----------------------------------------
-
+---------
+-------------------------------
+root ALL=(ALL)ALL
+ADMIN TTY=(USER)COMMAND
 
 3.filesystem 
 -------------
 FS tree
+
 file/directory permissions
 redirection std/std out
 file permisions
