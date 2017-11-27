@@ -310,9 +310,20 @@ loops, conditions
 9.Devops
 ================
 9-1.GIT
+Done!! Documentation pending
 9-2.GRADLE
-9-3.JENKINS
-9-4.DOCKER
-9-5.DOCKER-COMPOSE
+Gradle builds and types
+9-3 maven and ant 
+9-4.JENKINS
+
+9-5.DOCKER,DOCKER-COMPOSE
+
 9-6.ANSIBLE
+
+Ansible setup
+Ansible env setup : ssh,java,git,gradle,tomcat,tomcat users for Jenkins integration,docker,dockercompose.
+Ansible aws instance : ec2
+Ansible jenkins integration
+Ansible containers configuration
+
 9-7.AWS 
