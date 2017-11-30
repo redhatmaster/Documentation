@@ -317,6 +317,7 @@ Done!! Documentation pending
 Gradle builds and types
 9-3 maven and ant 
 9-4.JENKINS
+master slave configuration
 
 9-5.DOCKER,DOCKER-COMPOSE
 
@@ -331,3 +332,7 @@ Ansible jenkins integration
 Ansible containers configuration
 
 9-7.AWS 
+
+9-8 LAMP setup
+
+9-9 Server Hardening
