@@ -28,8 +28,10 @@ BIOS Check -----> CMOS settings (RAM)
  BIOS ----> finds ------> MBR in Harddisk [Boot Sector - 1st sector of Hard disk(512MB)] ----> loads contents of MBR ----> RAM
  MBR -----> initialises ---------> GRUB - 1st stage of Boot Loader
  
- # GRUB 1st Stage: Sector 0 : GRUB 1st Stage of boot loader looks for the flag in Partition Table to know which partition has to be searched for KERNAL
-                   KERNAL SEARCH: GRUB Loads file system drivers (s/w that manager h/w controllers) inorder to access /boot/grub/grub.conf for Kernal Path.
+ # GRUB 1st Stage: Sector 0 : GRUB 1st Stage of boot loader looks for the flag in Partition Table to know which partition 
+                              has to be searched for KERNAL
+                          KERNAL SEARCH: GRUB Loads file system drivers (s/w that manager h/w controllers) inorder to access
+		          /boot/grub/grub.conf for Kernal Path.
  # GRUB 2nd Stage : Loads Kernal image and Initrd.
   Loading Kernal Image : Kernal Image is a Compressed file - executable bz image file.Kernal loads temporary file system before
                          loading ROOT file system  with insmod and rmmod commands in initrd image.
