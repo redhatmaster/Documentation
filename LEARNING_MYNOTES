@@ -314,7 +314,11 @@ loops, conditions
 9-1.GIT
 Done!! Documentation pending
 9-2.GRADLE
+
 Gradle builds and types
+Gradle Plugins
+Gradle artifactory
+
 9-3 maven and ant 
 9-4.JENKINS
 master slave configuration
@@ -333,6 +337,6 @@ Ansible containers configuration
 
 9-7.AWS 
 
-9-8 LAMP setup
+10 LAMP setup
 
-9-9 Server Hardening
+11 Server Hardening
