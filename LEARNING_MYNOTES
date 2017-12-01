@@ -260,11 +260,142 @@ SUDO users , sudoers file
 root ALL=(ALL)ALL
 ADMIN TTY=(USER)COMMAND
 
-3.filesystem 
--------------
+3.FILESYSTEM
+===============================================================
+
 FS tree
+------------------------------
+Directory	Content
+/bin	Common programs, shared by the system, the system administrator and the users.
+/boot	The startup files and the kernel, vmlinuz. In some recent distributions also grub data. Grub is the GRand Unified Boot loader and is an attempt to get rid of the many different boot-loaders we know today.
+/dev	Contains references to all the CPU peripheral hardware, which are represented as files with special properties.
+/etc	Most important system configuration files are in /etc, this directory contains data similar to those in the Control Panel in Windows
+/home	Home directories of the common users.
+/initrd	(on some distributions) Information for booting. Do not remove!
+/lib	Library files, includes files for all kinds of programs needed by the system and the users.
+/lost+found	Every partition has a lost+found in its upper directory. Files that were saved during failures are here.
+/misc	For miscellaneous purposes.
+/mnt	Standard mount point for external file systems, e.g. a CD-ROM or a digital camera.
+/net	Standard mount point for entire remote file systems
+/opt	Typically contains extra and third party software.
+/proc	A virtual file system containing information about system resources. More information about the meaning of the files in proc is obtained by entering the command man proc in a terminal window. The file proc.txt discusses the virtual file system in detail.
+/root	The administrative user's home directory. Mind the difference between /, the root directory and /root, the home directory of the root user.
+/sbin	Programs for use by the system and the system administrator.
+/tmp	Temporary space for use by the system, cleaned upon reboot, so don't use this for saving any work!
+/usr	Programs, libraries, documentation etc. for all user-related programs.
+/var	Storage for all variable files and temporary files created by users, such as log files, the mail queue, the print spooler area, space for temporary storage of files downloaded from the Internet, or to keep an image of a CD before burning it.
+
+
+
+
+
+
+
+
+
+
+Directories: files that are lists of other files.
+
+Special files: the mechanism used for input and output. Most special files are in /dev.
+
+Links: a system to make a file or directory visible in multiple parts of the system's file tree. 
+(Domain) sockets: a special file type, similar to TCP/IP sockets, 
+                 providing inter-process networking protected by the file system's access control.
+
+Named pipes: act more or less like sockets and form a way for processes to communicate with each other, 
+             without using network socket semantics.
+
+Symbol	Meaning
+-	Regular file
+d	Directory
+l	Link
+c	Special file
+s	Socket
+p	Named pipe
+b	Block device
+
+data partition: normal Linux system data, including the root partition containing all the data to start up and run the system; and
+
+Swap partition: expansion of the computer's physical memory, extra memory on hard disk.
+
+Other Partitions
+----------------------
+a partition for user programs (/usr)
+
+a partition containing the users' personal data (/home)
+
+a partition to store temporary data like print- and mail-queues (/var)
+
+a partition for third party and extra software (/opt)
+    
+Fdisk :
+--------------
+
+df and du commands:
+----------------------
+
+
 
 file/directory permissions
+
+The file system in reality :
+------------------------------------
+
+For most users and for most common system administration tasks, it is enough to accept that files and directories are ordered in a tree-like structure. The computer, however, doesn't understand a thing about trees or tree-structures.
+
+Every partition has its own file system. By imagining all those file systems together, we can form an idea of the tree-structure of the entire system, but it is not as simple as that. In a file system, a file is represented by an inode, a kind of serial number containing information about the actual data that makes up the file: to whom this file belongs, and where is it located on the hard disk.
+
+Every partition has its own set of inodes; throughout a system with multiple partitions, files with the same inode number can exist.
+
+Each inode describes a data structure on the hard disk, storing the properties of a file, including the physical location of the file data. When a hard disk is initialized to accept data storage, usually during the initial system installation process or when adding extra disks to an existing system, a fixed number of inodes per partition is created. This number will be the maximum amount of files, of all types (including directories, special files, links etc.) that can exist at the same time on the partition. We typically count on having 1 inode per 2 to 8 kilobytes of storage.
+
+At the time a new file is created, it gets a free inode. In that inode is the following information:
+
+    Owner and group owner of the file.
+
+    File type (regular, directory, ...)
+
+    Permissions on the file Section 3.4.1
+
+    Date and time of creation, last read and change.
+
+    Date and time this information has been changed in the inode.
+
+    Number of links to this file (see later in this chapter).
+
+    File size
+
+    An address defining the actual location of the file data.
+
+The only information not included in an inode, is the file name and directory. These are stored in the special directory files. By comparing file names and inode numbers, the system can make up a tree-structure that the user understands. Users can display inode numbers using the -i option to ls. The inodes have their own separate space on the disk.
+
+HARD and SOFT Links:
+----------------------------
+Hard link: Associate two or more file names with the same inode. Hard links share the same data blocks on the hard disk, while they continue to behave as independent files.
+
+There is an immediate disadvantage: hard links can't span partitions, because inode numbers are only unique within a given partition.
+
+Soft link or symbolic link (or for short: symlink): a small file that is a pointer to another file. A symbolic link contains the path to the target file instead of a physical location on the hard disk. Since inodes are not used in this system, soft links can span across partitions.
+
+Creating symbolic links:
+------------------------------------------------------------
+
+The symbolic link is particularly interesting for beginning users: they are fairly obvious to see and you don't need to worry about partitions.
+
+The command to make links is ln. In order to create symlinks, you need to use the -s option:
+
+ln -s targetfile linkname
+
+In the example below, user freddy creates a link in a subdirectory of his home directory to a directory on another part of the system:
+
+freddy:~/music> ln -s /opt/mp3/Queen/ Queen
+
+freddy:~/music> ls -l
+lrwxrwxrwx  1 freddy  freddy  17 Jan 22 11:07 Queen -> /opt/mp3/Queen
+
+Symbolic links are always very small files, while hard links have the same size as the original file.
+
+The application of symbolic links is widespread. They are often used to save disk space, to make a copy of a file in order to satisfy installation requirements of a new program that expects the file to be in another location, they are used to fix scripts that suddenly have to run in a new environment and can generally save a lot of work. A system admin may decide to move the home directories of the users to a new location, disk2 for instance, but if he wants everything to work like before, like the /etc/passwd file, with a minimum of effort he will create a symlink from /home to the new location /disk2/home.
 redirection std/std out
 file permisions
 mounting
