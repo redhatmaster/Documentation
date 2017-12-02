@@ -446,11 +446,12 @@ loops, conditions
 Done!! Documentation pending
 9-2.GRADLE
 
-Gradle builds and types
-Gradle Plugins
+Gradle builds and types 
+Gradle Plugins - war, java, base. custom
 Gradle artifactory
 
 9-3 maven and ant 
+
 9-4.JENKINS
 master slave configuration
 
