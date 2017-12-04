@@ -461,11 +461,27 @@ master slave configuration
 
 Refer to Ansible repository:
 ----------------------------
+Modules i know
+--------------------
+shell
+yum
+get_url
+fetch
+file
+blockinfile
+bnf
+unarchive
+docker_service
+roles
+
 Ansible setup
 Ansible env setup : ssh,java,git,gradle,tomcat,tomcat users for Jenkins integration,docker,dockercompose.
 Ansible aws instance : ec2
 Ansible jenkins integration
 Ansible containers configuration
+Ansible dynamic inventory- aws
+
+Ansible roles - done
 
 9-7.AWS 
 
