@@ -465,6 +465,12 @@ Modules i know
 --------------------
 shell
 yum
+yum: state=<> name={{ item }}
+ with_items:
+ - pkg1
+ - pkg2
+....
+yum_repository
 get_url
 fetch
 file
