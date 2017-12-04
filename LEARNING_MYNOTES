@@ -59,13 +59,6 @@ CREATE_MAIL_SPOOL=yes
 
 You can also view the default parameters set for new user to be created using
 # useradd -D
-GROUP=100
-HOME=/home
-INACTIVE=-1
-EXPIRE=
-SHELL=/bin/bash
-SKEL=/etc/skel
-CREATE_MAIL_SPOOL=yes
 
 The second file containing values used by useradd command for UID, GID, password encryption method and expiry related information
 # less /etc/login.defs
@@ -105,8 +98,6 @@ To change the default login shell
 SHELL=/bin/sh
 
 Now what if you want to add custom arguments to your user while creating them. 
-let us discuss in detail the different options which you can use along with useradd command
-
 2. Create multiple users with same UID
 # useradd -o deepak -u 501
 # useradd -o deep -u 501
@@ -118,38 +109,13 @@ deepak:x:501:501::/home/deepak:/bin/sh
 deep:x:501:504::/home/deep:/bin/sh
 user:x:501:505::/home/user:/bin/sh
 
-3. Manually assign a UID to the user
-
-By default a user automatically gets any free uid more than 500 when you run the useradd command. But what if you manually want to assign a uid to your user
-
-
-# useradd -u 550 deepak
-
-Let us verify the assigned uid to deepak
-# id deepak
-uid=550(deepak) gid=550(deepak) groups=550(deepak)
-
 4. Create user without home directory
 # useradd -M test
-
-# su - test
-su: warning: cannot change directory to /home/test: No such file or directory
-
--bash-4.1$ pwd
-/root
 
 5. Create user with custom defined home directory
 # useradd -d /home/users/test test
 
-# su - test
-
-$ pwd
-/home/users/test
-
 6. Add user to different primary group
-By default when you run useradd command, a group with the same name is created inside /etc/group but what if you donot want a group to be created with the same name instead add the user to some different already existing group.
-
-Here we will create a user "deep" and add him to group "admin" without creating another "deep" group
 # useradd -g admin deep
 
 Verify the groups of user "deep"
@@ -159,9 +125,6 @@ deep : admin
 
 7. Add user to different secondary group
 
-In the above command you saw if we are mentioning a different primary group while using useradd command then a default group with the name of user is NOT created. Now what if you want a group with username's to be created but instead you want the user to add some secondary group.
-
-Here user deepak is created along with group deepak but also in the same command we are adding deepak to dba group
 # useradd  -G dba deepak
 
 Verify groups of deepak
@@ -171,10 +134,6 @@ deepak : deepak dba
 8. Add user to multiple groups
 You can add the user to multiple secondary groups using single command
 # useradd -G admin,dba deepak
-
-Verify
-# groups deepak
-deepak : deepak admin dba
 
 Creating a user along with encrypted password
 Now you can create a user with pre-defined password, but the condition is the password used should be encrypted which you can do with various methods. Here I will show you one method to do so
