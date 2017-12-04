@@ -171,7 +171,7 @@ chage
 ------------------------------------
 chage <username>
 
-  Minimum Password Age [10]: 
+        Minimum Password Age [10]: 
 	Maximum Password Age [99999]: 
 	Last Password Change (YYYY-MM-DD) [2017-11-25]: 
 	Password Expiration Warning [7]: 
@@ -245,14 +245,6 @@ Directory	Content
 /var	Storage for all variable files and temporary files created by users, such as log files, the mail queue, the print spooler area, space for temporary storage of files downloaded from the Internet, or to keep an image of a CD before burning it.
 
 
-
-
-
-
-
-
-
-
 Directories: files that are lists of other files.
 
 Special files: the mechanism used for input and output. Most special files are in /dev.
@@ -311,19 +303,12 @@ Each inode describes a data structure on the hard disk, storing the properties o
 At the time a new file is created, it gets a free inode. In that inode is the following information:
 
     Owner and group owner of the file.
-
     File type (regular, directory, ...)
-
-    Permissions on the file Section 3.4.1
-
+    Permissions on the file
     Date and time of creation, last read and change.
-
     Date and time this information has been changed in the inode.
-
-    Number of links to this file (see later in this chapter).
-
+    Number of links to this file.
     File size
-
     An address defining the actual location of the file data.
 
 The only information not included in an inode, is the file name and directory. These are stored in the special directory files. By comparing file names and inode numbers, the system can make up a tree-structure that the user understands. Users can display inode numbers using the -i option to ls. The inodes have their own separate space on the disk.
@@ -345,20 +330,11 @@ The command to make links is ln. In order to create symlinks, you need to use th
 
 ln -s targetfile linkname
 
-In the example below, user freddy creates a link in a subdirectory of his home directory to a directory on another part of the system:
+*** Symbolic links are always very small files, while hard links have the same size as the original file.
 
-freddy:~/music> ln -s /opt/mp3/Queen/ Queen
-
-freddy:~/music> ls -l
-lrwxrwxrwx  1 freddy  freddy  17 Jan 22 11:07 Queen -> /opt/mp3/Queen
-
-Symbolic links are always very small files, while hard links have the same size as the original file.
-
-The application of symbolic links is widespread. They are often used to save disk space, to make a copy of a file in order to satisfy installation requirements of a new program that expects the file to be in another location, they are used to fix scripts that suddenly have to run in a new environment and can generally save a lot of work. A system admin may decide to move the home directories of the users to a new location, disk2 for instance, but if he wants everything to work like before, like the /etc/passwd file, with a minimum of effort he will create a symlink from /home to the new location /disk2/home.
 redirection std/std out
 file permisions
 mounting
-links
 
 4.Network Management
 ------------------
