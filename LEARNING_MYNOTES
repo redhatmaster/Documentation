@@ -458,6 +458,11 @@ alternatives
 curl
 wget
 
+make : Used to re-compile exectable inorder to install programs.
+       Troubleshooting : dependent libraries - Devel libs, add exectables to /usr/local/bin , 
+       Export path variable to /usr/local/bin path.
+
+
 7.Others
 --------------------
 scheduling jobs
