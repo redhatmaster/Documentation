@@ -354,6 +354,9 @@ Performance and Memory Management
 
 Clear Linux Memory Buffer Cache
 --------------------------------
+
+free -m 
+
 There are three options available to flush cache of Linux memory. Use one of below as per your requirements.
 
     Free pagecache, dentries and inodes in cache memory
