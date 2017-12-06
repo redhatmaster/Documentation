@@ -349,6 +349,102 @@ hidden process
 cpu and mem utilization
 services and daemons
 
+Performance and Memory Management
+=================================
+
+Clear Linux Memory Buffer Cache
+--------------------------------
+There are three options available to flush cache of Linux memory. Use one of below as per your requirements.
+
+    Free pagecache, dentries and inodes in cache memory
+
+    sync; echo 3 > /proc/sys/vm/drop_caches
+
+    Free dentries and inodes use following command
+
+    sync; echo 2 > /proc/sys/vm/drop_caches
+
+    Free pagecache only use following command
+
+    sync; echo 1 > /proc/sys/vm/drop_caches
+
+
+Disk Partitioning and File system Resizing
+-------------------------------------------
+Create partition and Filesystem
+-------------------------------
+1) Create one or more partitions using fdisk:
+
+    fdisk  /dev/sdb
+    N (new partition)
+    p (primary partition)
+
+    Accept default initial and end blocks if you want to create a single partiton with the whole disk
+
+    w (write the information and quit) 
+
+2) check the new partition
+
+    [root@vmractest3 root]# fdisk -l
+
+ 3) Format the new partition as an ext3 file system type:
+
+    /sbin/mkfs -t ext3 /dev/sdb1 
+
+4)Assigning a Label with e2label
+
+    Once you have created and formated a partition,
+
+    you should assign it a label using the e2label command. This allows you
+
+    to add the partition to /etc/fstab using a label instead of using a
+
+    device path, thereby making the system more robust. [1] To add a label
+
+    to a partition, type the following command as root:
+
+    /sbin/e2label /dev/s db1 /oradisk 
+
+5) Then add the new partition to /etc/fstab, this way it will be mounted at reboot:
+
+    To check the label use this command:
+
+    [root@vmractest3 root]# /sbin/tune2fs -l /dev/sdb1 |grep volume
+
+    Filesystem volume name:   /oradisk
+
+    vi /etc/fstab and add the following line:
+
+    LABEL=/oradisk          /oradisk                ext3    defaults        1 2 
+
+6) Mount the new file system:
+
+    First create the base directory and assign it to the user that will own it
+
+    [root@vmractest3 root]# mkdir /oradisk
+
+    [root@vmractest3 root]#chown oracle:dba /oradisk
+
+    Then mount it
+
+    [root@vmractest3 root]# mount /dev/sdb1 /oradisk
+
+    And check it
+
+    [root@vmractest3 root]# df -k
+
+Resize Filesystem
+------------------
+Unmount Filesystem -- /etc/fstab can be reffered for available Filesystems and disk partitions.
+Delete the existing disk partition and create new partition with fdisk command.
+fdisk <partition>
+Delete partition
+create new partition with required size
+Save (w) .
+Run e2fsck <disk/partition>
+resize2fs <partition>
+mount <partition> <filesystem>
+
 
 6.Package management
 -----------------
