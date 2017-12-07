@@ -482,6 +482,11 @@ loops, conditions
 9.Devops
 ================
 9-1.GIT
+
+Git merge squash
+git checkout
+
+
 Done!! Documentation pending
 9-2.GRADLE
 
