@@ -481,12 +481,149 @@ loops, conditions
 
 9.Devops
 ================
+
 9-1.GIT
 
+Basic commands
+-------------------------
+ssh -T git@github.com
+git clone <linktorepository>
+git status -s
+git config --global user.name <username>
+git config --global user.mail <email>
+git commit -m "<message>"
+git pull origin master
+git push origin master
+git log
+
+Advanced:
+==============
 GIT : how to branch, merge, squash, stash, and patch ?
+
+Git stash: saving half done work. git stash apply will revert , git stash apply <specific stash>.
+
+Git patch : is used to share a branch commit to another developer. 
+           git format-patch master --stdout > fixemptyposter.patch
+
+Git octopus merge
+-----------------------
+git merge <branch1> <branch2>.. <branchn>
+
+[git merge-distinct]
+
+GIT Squash and Rebase
+-----------------------------
+Both git merge --squash and git rebase --interactive can produce a "squashed" commit.
+But they serve different purposes.
+
+    git merge --squash abranch
+
+will produce a squashed commit on the destination branch, without marking any merge relationship.
+(Note: it does not produce a commit right away: you need an additional git commit -m "squash branch")
+This is useful if you want to throw away the source branch completely, going from (schema taken from SO question):
+
+ git checkout stable
+
+      X                   stable
+     /                   
+a---b---c---d---e---f---g tmp
+
+to:
+
+git merge --squash tmp
+git commit -m "squash tmp"
+
+      X-------------------G stable
+     /                   
+a---b---c---d---e---f---g tmp
+
+and then deleting tmp branch.
+
+    git rebase --interactive
+
+replays some or all of your commits on a new base, allowing you to squash (or more recently "fix up", see this SO question), going directly to:
+
+git checkout tmp
+git rebase -i stable
+
+      stable
+      X-------------------G tmp
+     /                     
+a---b
+
+If you choose to squash all commits of tmp (but, contrary to merge --squash, you can choose to replay some, and squashing others).
+
+So the differences are:
+
+    merge does not touch your source branch (tmp here) and creates a single commit where you want.
+    rebase allows you to go on on the same source branch (still tmp) with:
+        a new base
+        a cleaner history
+
+use git rebase -i to collapse all my commits into one commit and re-write the commit message. Then I send it upstream. 
+Note : This action is to be performed when yo are on master branch locally.
+
+
+
+Say your bug fix branch is called bugfix and you want to merge it into master:
+
+git checkout master
+git merge --squash bugfix
+git commit
+
+This will take all the commits from the bugfix branch, squash them into 1 commit and then merge it with your master branch.
 
 Git merge squash
 git checkout
+
+Delete brances local and remote
+----------------------------------------------
+To remove a local branch from your machine:
+
+git branch -d {the_local_branch} 
+(use -D instead to force deletion without checking merged status)
+
+To remove a remote branch from the server:
+
+git push origin --delete {the_remote_branch}
+         or 
+git push -d <remote_name:origin> <branch_name>
+
+Merging two commits to one
+-------------------------------------------
+Running git rebase --interactive HEAD~2 gives you an editor with
+
+pick b76d157 b
+pick a931ac7 c
+
+# Rebase df23917..a931ac7 onto df23917
+#
+# Commands:
+#  p, pick = use commit
+#  r, reword = use commit, but edit the commit message
+#  e, edit = use commit, but stop for amending
+#  s, squash = use commit, but meld into previous commit
+#  f, fixup = like "squash", but discard this commit's log message
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+# However, if you remove everything, the rebase will be aborted.
+
+change c to squash. and save-quitting your editor, you'll get another editor whose contents are
+
+# This is a combination of 2 commits.
+# The first commit's message is:
+
+b
+
+# This is the 2nd commit message:
+
+c
+
+When you save and quit, the contents of the edited file become commit message of the new combined commit:
+
+$ git log --pretty=oneline
+18fd73d3ce748f2a58d1b566c03dd9dafe0b6b4f b and c
+df239176e1a2ffac927d8b496ea00d5488481db5 a
 
 
 Done!! Documentation pending
