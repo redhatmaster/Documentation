@@ -586,12 +586,11 @@ git branch -d {the_local_branch}
 To remove a remote branch from the server:
 
 git push origin --delete {the_remote_branch}
-         or 
-git push -d <remote_name:origin> <branch_name>
+        
 
 Merging two commits to one
 -------------------------------------------
-Running git rebase --interactive HEAD~2 gives you an editor with
+Running : git rebase --interactive HEAD~2 gives you an editor with
 
 pick b76d157 b
 pick a931ac7 c
@@ -639,6 +638,22 @@ Gradle artifactory
 master slave configuration
 
 9-5.DOCKER,DOCKER-COMPOSE
+
+Docker Network:
+-----------------------
+Types : 
+1. Bridge
+2. Host
+3. Container
+
+docker network ls
+docker run -tid --name=<container1> <websphere-liberty>
+docker run -tid --name=<container2> <ubuntu>
+docker network create -d bridge --subnet 172.25.0.0/16 isolated_rw
+docker network connect isolated_rw container2
+docker network inspect isolated_rw
+ifconfig -a
+docker attach container2
 
 9-6.ANSIBLE
 
