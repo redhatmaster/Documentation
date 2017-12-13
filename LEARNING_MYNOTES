@@ -641,10 +641,17 @@ master slave configuration
 
 Docker Network:
 -----------------------
+Port Mapping : docker run -ti -p <hostport>:<containerport> container/imagename
+               docker port <containerid>
+	       
+
+Ip Address :
+------------
 Types : 
-1. Bridge
+1. Bridge - Default
 2. Host
 3. Container
+also there are custom networking , Overlay network
 
 docker network ls
 docker run -tid --name=<container1> <websphere-liberty>
@@ -692,3 +699,13 @@ Ansible roles - done
 10 LAMP setup
 
 11 Server Hardening
+
+12 Redhat Satellite
+
+ Install Red Hat Satellite 6.
+·         Red Hat Network organizations, locations, users and roles.
+·         Manage software with Red Hat Satellite environments and content view.
+·         Create custom RPM packages
+·         Use Red Hat Satellite to configure hosts with Puppet.
+·         Provision hosts with integrated software and configuration management.
+·         Implement Metal-as-a Service (MaaS) with Satellite discovery and provisioning of unprovisioned hosts.
