@@ -1,23 +1,29 @@
 steps for docker project1 configuration
+=======================================================================================================================================================
 
 wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 yum install epel-release-latest-7.noarch.rpm
 yum update
 yum install java-1.8.0-openjdk* -y
 
-Download and Install Eclipse
-===========================
-install java : yum install java-1.8.0-openjdk* -y
 java -version
 
+Download and Install Eclipse
+===========================
 https://www.eclipse.org/downloads/index-developer.php?osType=linux
+
 cd to Downloads]# tar -xvf eclipse-java-photon-M2-linux-gtk-x86_64.tar.gz
+
 rm -rf eclipse-java-photon-M2-linux-gtk-x86_64.tar.gz
 cd downloads/eclipse 
+
 launch eclipse by clicking eclipse icon.
+
 Eclipse->Help menu->Install new software choose the Web, XML, Java EE plugin and install it
 download jar files : https://jersey.github.io/download.html
+
 Download Apache tomcat from : http://www-us.apache.org/dist/tomcat/tomcat-9/v9.0.1/bin/apache-tomcat-9.0.1.tar.gz
+
 In Eclipse : goto window--->preferences--->server--->runtimeenvironment--->add ---> apachetomcat
 follow link to create WAR file : https://www.tutorialspoint.com/restful/restful_first_application.htm
 Note : Create com.tutorialspont package and .java files under src/main/java
@@ -26,13 +32,10 @@ UserManagemt--->rightclick--->javaEE tools--->Generate Deplyoment descriptor gru
 
 create build.gradle under Usermanagement  root directory : 
 
-
-
 Create War file : User management (which should further be generated manually using gradle inorder to automate build task)
 =========================================
 
 https://www.tutorialspoint.com/restful/restful_first_application.htm
-
 
 
 Gradle :
@@ -80,8 +83,6 @@ verify for build directory and war file
 [root@redhatmaster /root/eclipse-workspace/UserManagement/]ls
 
 
-
-
 Docker: 
 =====================================
 yum-config-manager --enable rhel-7-server-extras-rpms
@@ -89,7 +90,9 @@ yum-config-manager --enable rhel-7-server-extras-rpms
 yum-config-manager --add-repo https://packages.docker.com/1.13/yum/repo/main/centos/7
 
 ###########################################################
+
 Use below for lower version
+
 1.update yum : 
 
 yum update
@@ -101,6 +104,7 @@ baseurl=https://yum.dockerproject.org/repo/main/centos/7/
 enabled=1
 gpgcheck=1
 gpgkey=https://yum.dockerproject.org/gpg
+
 ############################################################
 
 3. yum install docker-engine-1.13*
@@ -166,9 +170,6 @@ apt-get install vim
 
 ------------------------------------------------------------
 
-
-
-
 GIT Installation
 =================================
 
@@ -183,7 +184,6 @@ cd /usr/local/src
 wget https://www.kernel.org/pub/software/scm/git/git-1.8.2.3.tar.gz
 ls
 tar -xvf git-1.8.2.3.tar.gz 
-
 
 ============================================
 
