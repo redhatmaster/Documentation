@@ -636,15 +636,50 @@ Gradle artifactory
 
 9-4.JENKINS
 ========================================================================
-master slave configuration
+Jenkins is integrated with these two components:
 
-Triggering a Jenkins build from a push to Github : 
-https://medium.com/@marc_best/trigger-a-jenkins-build-from-a-github-push-b922468ef1ae
+    Version Control system like GIT,SVN
+    And build tools like Apache Maven.
 
-To notify developers about build report success or failure, it is integrated with LDAP mail server: 
-Configure openldap and create test ldap users.
+# Master slave configuration
+
+# Triggering a Jenkins build from a push to Github : 
+  https://medium.com/@marc_best/trigger-a-jenkins-build-from-a-github-push-b922468ef1ae
+
+# To notify developers about build report success or failure, it is integrated with LDAP mail server: 
+  Configure openldap and create test ldap users.
+
+# Move or copy Jenkins from one server to another
+
+# Commands used to start Jenkins manually
+  
+
+    (Jenkins_url)/restart: Forces a restart without waiting for builds to complete.
+    (Jenkin_url)/safeRestart: Allows all running builds to complete.
+
+# Clone a Git repository via Jenkins
+
+Example : With simple steps, maven release project is automated
 
 
+Some of the important plugins in Jenkin includes
+
+• Maven 2 project
+• Amazon EC2
+• HTML publisher
+• Copy artifact
+• Join
+• Green Balls
+
+deploy a custom build of a core plugin?
+
+To deploy a custom field of a core plugin, you have to do following things
+
+• Stop Jenkins
+• Copy the custom HPI to $Jenkins_Home/plugins
+• Delete the previously expanded plugin directory
+• Make an empty file called .hpi.pinned
+• Start Jenkins
 
 9-5.DOCKER,DOCKER-COMPOSE
 
