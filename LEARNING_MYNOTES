@@ -635,7 +635,16 @@ Gradle artifactory
 9-3 maven and ant 
 
 9-4.JENKINS
+========================================================================
 master slave configuration
+
+Triggering a Jenkins build from a push to Github : 
+https://medium.com/@marc_best/trigger-a-jenkins-build-from-a-github-push-b922468ef1ae
+
+To notify developers about build report success or failure, it is integrated with LDAP mail server: 
+Configure openldap and create test ldap users.
+
+
 
 9-5.DOCKER,DOCKER-COMPOSE
 
