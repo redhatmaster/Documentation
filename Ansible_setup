@@ -4,8 +4,8 @@ Ansible Setup
 wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 rpm -ivh epel-release-latest-7.noarch.rpm
 
-yum install epel-release 
-yum install python python-pip net-tools make git gcc python-devel libffi-devel openssl-devel python-sphinx
+yum install epel-release -y
+yum install python python-pip net-tools make git gcc python-devel libffi-devel openssl-devel python-sphinx -y
 
 pip install --upgrade pip
 pip install markupsafe xmltodict pywinrm
