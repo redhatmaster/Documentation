@@ -641,7 +641,11 @@ Jenkins is integrated with these two components:
     Version Control system like GIT,SVN
     And build tools like Apache Maven.
 
-# Master slave configuration
+# Master slave configuration : 
+
+1. http://www.infobeans.com/opensourceblog/miscellaneous/jenkins-master-slave-configuration/
+
+2. https://www.quora.com/What-is-the-use-of-master-and-slave-in-Jenkins
 
 # Triggering a Jenkins build from a push to Github : 
   https://medium.com/@marc_best/trigger-a-jenkins-build-from-a-github-push-b922468ef1ae
