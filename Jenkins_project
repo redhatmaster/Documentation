@@ -5,4 +5,6 @@ Jenkins Master : configure jenkins plugins for slave integration
                  Create jobs : includes - scm , build script sample, schedule polling with scm hook, select slave on 
                  which job has to run
 Jenkins Slave : Configure jenkins slave  setup plugins
+
+https://engineering.riotgames.com/news/jenkins-ephemeral-docker-tutorial
                 
