@@ -1,0 +1,8 @@
+Using ANSIBLE [ Roles ]: configure 3 jenkins slave servers -  using Docker containers mac, windows, ubuntu. generate users/ssh keys
+                to connect to master.
+Jenkins Master : configure jenkins plugins for slave integration
+                 create slave nodes, configure using user/ssh keys setup
+                 Create jobs : includes - scm , build script sample, schedule polling with scm hook, select slave on 
+                 which job has to run
+Jenkins Slave : Configure jenkins slave  setup plugins
+                
