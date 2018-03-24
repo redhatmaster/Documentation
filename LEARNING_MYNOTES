@@ -342,6 +342,16 @@ network configuration
 firewall
 iptables
 
+SSH
+----------
+The sshd_config is the ssh daemon (or ssh server process) configuration file. 
+As you've already stated, this is the file you'll need to modify to change the server port.
+
+Whereas, the ssh_config file is the ssh client configuration file. 
+The client configuration file only has bearing on when you use the ssh command to connect to another ssh host. 
+So, in this case, you don't need to modify it. It will be other client machines connecting to your server.
+
+
 5.Process Management
 ------------------
 process
@@ -376,6 +386,9 @@ Disk Partitioning and File system Resizing
 -------------------------------------------
 Create partition and Filesystem
 -------------------------------
+
+cat /proc/filesystems
+
 1) Create one or more partitions using fdisk:
 
     fdisk  /dev/sdb
@@ -385,6 +398,7 @@ Create partition and Filesystem
     Accept default initial and end blocks if you want to create a single partiton with the whole disk
 
     w (write the information and quit) 
+  "partprobe" to reflect changes without restart.
 
 2) check the new partition
 
@@ -435,6 +449,14 @@ Create partition and Filesystem
     And check it
 
     [root@vmractest3 root]# df -k
+    
+    Mount permanently : 
+    
+    # blkid
+    # edit /etc/fstab and enter  
+    [Device]   [Mount Point] [File System Type] [Options] [Dump] [Pass(fsck)]
+    /dev/sda#  /mount_tmp         xfs           defaults    0       0
+     
 
 Resize Filesystem
 ------------------
