@@ -43,8 +43,8 @@ BIOS Check -----> CMOS settings (RAM)
 ---------------------------------------------
 USer config files :  
 ---------------------------------------
-/etc/passwd - uname:psw:uid:gid:comments:homedir:shell
-/etc/group - uname:pwd:uid:gname
+/etc/passwd - uname:pswholder:uid:gid:comments:homedir:shell
+/etc/group - gname:gpasw:gid:mem
 /etc/shadow - uname:encryptedpsw:lastpswchange:min:max:warn:inactive:expire
 
 These are the two files which contain the default values to be assigned to a user when created using useradd
@@ -398,6 +398,7 @@ cat /proc/filesystems
     Accept default initial and end blocks if you want to create a single partiton with the whole disk
 
     w (write the information and quit) 
+    
   "partprobe" to reflect changes without restart.
 
 2) check the new partition
