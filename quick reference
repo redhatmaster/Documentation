@@ -156,8 +156,16 @@ blockinfile:
            ------
            -------
 docker
+   name:
+   image:
+   state:
+   expose:
 docker_service
-
+  project_src: pathtodockercomposeanddockerfile
+  state:
+  debug: yes
+  
+  
 ec2:
         key_name: "{{ keypair }}"
         group: default
@@ -170,5 +178,19 @@ ec2:
         count: 1
       register: ec2
 
+LVM 
+-----
 
+- name: Create a logical volume of 512m with disks /dev/sda and /dev/sdb
+  lvol:
+    vg: firefly
+    lv: test
+    size: 512
+         [100%free with allspaceinvg, +100%free extend to allspaceinvg,1024 extend to 1024,100%pv all space in pv,
+          80%vg resize to %of vg, 100 reduce to lower (force:yes)]
+    shrink: no [ if size should not be reduced]
+    pvs: /dev/sda,/dev/sdb
+    
+    
+ 
 ------------------------------------------------------------------------------------------------------------------------------
