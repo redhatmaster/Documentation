@@ -63,4 +63,112 @@ networks:
 
 
 ANSIBLE
----------------
+------------------------------------------------------------------------------------------------------------------------------
+
+Ansible - Python .
+Ansible uses - YAML code.
+Ansible needs Python - 3 for Docker.
+Docker-py is to be installed to integrate with ansible.
+Ansible needs SSH - Password less to connect to  nodes.
+Ansible also connects With password using  : --ask-pass option.
+Ansible is agent less.Simple to use.
+Ansible configuration file : ansible.cfg is found in the home directory or /etc/ansible/ansible.cfg which contain conf settings,
+path vars and its default values.
+
+Ansible needs nodes IP/Hosts to be defined in /etc/ansible/hosts file as: 
+--------------------------------------------------------------------------
+
+IP/Host
+
+[group1]
+IP/Host
+IP/host
+...
+
+[group2] 
+....
+....
+
+
+Ansible Playbook structure
+------------------------------
+---
+- hosts: ip/hostname
+            or
+         [groupname] // Which reads from /etc/ansible/hosts file
+         
+  remote_user: username
+  gather_facts: yes/no
+  tasks:
+    - name: name of the task
+      modulename: action
+      
+    - name: name of another task
+      modulename: action
+      
+...
+
+ATOM is used for YAML code indentation.
+
+Ansible Adhoc Commnads
+==================================
+
+
+
+Ansible Modules
+==================================
+setup , gather_facts
+vars
+debug: var=modulenametoprintallvariables
+yum:
+ name:
+ state:
+yum : name={{ items }} state=
+   with_items:
+    - pkg1
+    - pkg2
+yum_repository:
+        name: docker
+        description: docker repo
+        baseurl: https://packages.docker.com/1.13/yum/repo/main/centos/7
+        gpgcheck: no
+msg: "message"
+shell: command
+get_url:
+   url:
+   dest:
+file:
+    path: 
+    state: 
+    mode: 
+    recurse: yes/no
+unarchive:
+    src:
+    dest:
+pip
+  name:
+  state:
+fetch : src= dest=
+blockinfile:
+        path: 
+        block: |
+           ------
+           ------
+           -------
+docker
+docker_service
+
+ec2:
+        key_name: "{{ keypair }}"
+        group: default
+        instance_type: "{{ instance_type }}"
+        image: "{{ image }}"
+        wait: true
+        region: "{{ region }}"
+        aws_access_key: AKIAJSHLO5A4R3K5GREA
+        aws_secret_key: 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
+        count: 1
+      register: ec2
+
+
+------------------------------------------------------------------------------------------------------------------------------
