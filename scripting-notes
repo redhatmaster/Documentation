@@ -97,6 +97,31 @@ grep
 
 find
 ======================================
+find location option name
+find .        -name   passwd
+find /etc -iname passwd
+find / -type d -iname dname
+find / -type f -iname fname
+find / -type f -perm 777 -print
+find / -type f ! -perm 777
+find / -perm /u=s
+find / -perm /u=r or /a=x or /g=s 
+find / -type f -perm 0777 -print -exec chmod 644 {} \;
+find . -type f -name "fname or *.extention" -exec rm -f {} \;
+find / -type ford -empty
+find / -type ford ".*"
+find / -user uname
+find / -user name fnameordname
+find / -group gname
+find / -mtime 50
+find / -atime 50
+find / -mtime +50 -mtime -100
+find / -cmin 60
+find / -amin 60
+find / -size +50M -size -100M
+find / -size +100M -exec rm -rf {} \;
+find / -name "fname.ext" -size +100M -exec rm -rf {} \;
+find . -maxdepth 1 -newer<m/a/c>t "2018-04-12"
 
 
 
