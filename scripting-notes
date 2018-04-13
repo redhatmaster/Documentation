@@ -88,17 +88,104 @@ echo $((x / y))
 sed
 ====================================
 
+sed -e 's/ \ /[^/]*.php$/ \ /removed/' pattern1.txt 
+sed -e 's/   \/[^/]*.php$/ \/removed/
+
+sed -e 'sub/  pattern/   action/'
+
 awk
 =====================================
+awk '{ print; }' fname
 
-grep
+
+grep - search and filter patterns
 ======================================
+grep options action name
+options
+----------
+-i ignore case
+-v invert match
+-m maxmatches
+-n linenmber
+-B before
+-A after
+-C before and after
+-c count
+-o only matched
+-b position nmber
+
+patterns
+------------
+"^[[:alpha:]]"
+"[[:alpha:]]$"
+"[[:alpha:]]*"   
+"^[[:alpha:]]$"  same as above
+"^[[:alpha:]]$*" 1st char alpha remaining char/alpha
+"^[[:alpha:]]*$" 1st and last alpha between any char/num
 
 
-find
+
+"[[:alpha:]]"
+"[[:digit:]]"
+"[[:lower:]]"
+"[[:upper:]]"
+"[[:blank:]]"
+"[[:space:]]"
+"[[:xdigit:]]"
+"[[:punct:]]"
+
+
+awk -F : '{ print $2 }' fname | grep "^[[:alpha:]]"
+
+examples
+--------------
+grep -v "#" fname -- remove comments from file and display contents
+find . –name “*.mp3” | grep –i JayZ | grep –vi “remix”
+grep root -A/B 1 /etc/passwd
+grep root -C 2 /etc/passwd
+grep root -c /etc/passwd
+grep -n root /etc/passwd
+grep -r "root" *
+zgrep -i patternname zipfilename
+grep pattern file1 file2
+grep ip file
+grep -w ip file
+grep -A/B/C count pattern file
+grep -c pattern file
+grep -o -n -b pattern file
+
+
+
+
+find - files/dir
 ======================================
 find location option name
 find .        -name   passwd
+options
+===============
+-type
+-name
+-iname
+-perm
+-size
+-m/a/ctime
+-m/a/cmin
+-user
+-group
+-maxdepth
+-empty
+-readable
+-writable
+
+actions
+
+-print
+-delete
+-exec
+
+----------------------------------
+Examples
+
 find /etc -iname passwd
 find / -type d -iname dname
 find / -type f -iname fname
@@ -122,9 +209,6 @@ find / -size +50M -size -100M
 find / -size +100M -exec rm -rf {} \;
 find / -name "fname.ext" -size +100M -exec rm -rf {} \;
 find . -maxdepth 1 -newer<m/a/c>t "2018-04-12"
-
-
-
 
 extras
 --------------------------------------------
