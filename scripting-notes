@@ -43,6 +43,15 @@ echo "X is equal to Y"
 fi
 
 
+if options
+===============================
+-f
+-r
+-x
+-w
+-d
+-e
+
 while
 ============
  x=1
